@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/home/skorefull/Documentos/vim_learn'
+let g:netrw_dirhist_2='/home/skorefull/Documentos/c/SO_tests/fshell'
+let g:netrw_dirhist_3='/home/skorefull/Documentos/misc'
+let g:netrw_dirhist_4='/home/skorefull/Documentos/misc/pw-elementclient'
+let g:netrw_dirhist_5='/home/skorefull/Documentos/IC_ML/py/atual/official_repo'
+let g:netrw_dirhist_6='/home/skorefull/Documentos/IC_ML/py/atual/official_repo/biased_cluster'
+let g:netrw_dirhist_7='/home/skorefull/.config/nvim/colors'
+let g:netrw_dirhist_8='/home/skorefull/.config/nvim/plugged'
