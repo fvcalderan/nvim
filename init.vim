@@ -33,6 +33,9 @@ set relativenumber
 set mouse=a
 set inccommand=split
 set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
 set autochdir
 
 " my custom hotkeys
