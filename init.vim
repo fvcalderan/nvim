@@ -43,5 +43,29 @@ let mapleader="\<space>"
 nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
 nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
 nnoremap <c-p> :Files<cr>
-nnoremap <c-f> :Ag<space>
+
+"nnoremap <c-f> :Ag<space>
 nnoremap <leader>o :NERDTreeToggle<cr> 
+
+" easy <Esc> key
+inoremap jk <Esc>
+inoremap kj <Esc>
+
+" easy insert mode movement
+inoremap <A-h> <C-o>h
+inoremap <A-j> <C-o>j
+inoremap <A-k> <C-o>k
+inoremap <A-b> <C-o>b
+inoremap <A-w> <C-o>w
+inoremap <A-l> <C-o>l
+
+" run python program
+nnoremap <leader>r <Esc>:w<CR>:!python3 %<CR>
+
+" splits
+set splitbelow
+set splitright
+nnoremap <leader>h <C-w>h 
+nnoremap <leader>j <C-w>j 
+nnoremap <leader>k <C-w>k 
+nnoremap <leader>l <C-w>l 
