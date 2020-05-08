@@ -29,7 +29,7 @@ set noshowmode
 colo skoretheme
 set hidden
 set number
-set relativenumber
+" set relativenumber
 set mouse=a
 set inccommand=split
 set tabstop=4
