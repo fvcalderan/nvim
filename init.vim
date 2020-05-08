@@ -60,7 +60,10 @@ inoremap <A-w> <C-o>w
 inoremap <A-l> <C-o>l
 
 " run python program
-nnoremap <leader>r <Esc>:w<CR>:!python3 %<CR>
+" nnoremap <leader>r <Esc>:w<CR>:!python3 %<CR>
+
+" run 'run' file
+nnoremap <leader>r <Esc>:w<CR>:!./run<CR>
 
 " splits
 set splitbelow
