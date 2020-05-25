@@ -2,20 +2,10 @@
 call plug#begin()
 Plug 'terryma/vim-multiple-cursors'
 Plug 'sheerun/vim-polyglot'
-Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
-Plug 'junegunn/fzf.vim'
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2'
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
 Plug 'jiangmiao/auto-pairs'
 Plug 'preservim/nerdtree'
 Plug 'itchyny/lightline.vim'
 call plug#end()
-
-" configuration for ncm2 (neovim completion manager)
-autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
 
 " configuration for NERDTree
 autocmd STdinReadPre * let s:std_in=1
@@ -26,7 +16,8 @@ autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 set noshowmode 
 
 "basic configuration
-colo skoretheme
+"colo skoretheme
+set termguicolors
 set hidden
 set number
 " set relativenumber
