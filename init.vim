@@ -4,30 +4,42 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'sheerun/vim-polyglot'
 Plug 'jiangmiao/auto-pairs'
 Plug 'preservim/nerdtree'
-Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'ryanoasis/vim-devicons'
+Plug 'dikiaap/minimalist'
 call plug#end()
 
 " configuration for NERDTree
 autocmd STdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") && v:this_session == "" | NERDTree | endif
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") && v:this_session == "" | NERDTree | endif
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" configuration for lightline
+" configuration for airline
 set noshowmode 
 
 "basic configuration
-"colo skoretheme
-set termguicolors
 set hidden
 set number
-" set relativenumber
+set relativenumber
 set mouse=a
 set inccommand=split
+set autochdir
+
+" tabs
+set expandtab
+set smarttab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-set expandtab
-set autochdir
+
+" colors and theme - minimalist
+set fillchars+=vert:\ 
+set t_Co=256
+syntax on
+colorscheme minimalist
+let g:airline_theme='minimalist'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 
 " my custom hotkeys
 let mapleader="\<space>"
@@ -50,12 +62,6 @@ inoremap <A-b> <C-o>b
 inoremap <A-w> <C-o>w
 inoremap <A-l> <C-o>l
 
-" run python program
-" nnoremap <leader>r <Esc>:w<CR>:!python3 %<CR>
-
-" run 'run' file
-nnoremap <leader>r <Esc>:w<CR>:!./run<CR>
-
 " splits
 set splitbelow
 set splitright
@@ -63,3 +69,16 @@ nnoremap <leader>h <C-w>h
 nnoremap <leader>j <C-w>j 
 nnoremap <leader>k <C-w>k 
 nnoremap <leader>l <C-w>l 
+
+" My leader+key lang-specific shortcuts
+
+" Custom compiling/running options for various languages
+" General (run shell script)
+nnoremap <leader>r <Esc>:w<CR>:!./run<CR>
+" Latex compiling
+nnoremap <leader>lr <Esc>:w<CR>:!~/dotfiles/scripts/latex_compile %:p<CR>
+
+" Java specific
+nnoremap <leader>jc ipublic class <Esc>:r!echo %<CR>i<BS><Esc>A<BS><BS><BS><BS><BS> {<CR><CR>}<Esc>ki<Tab>
+nnoremap <leader>jm opublic static void main (String args[]) {<CR><CR>}<Esc>ki<Tab><Tab>
+nnoremap <leader>jp oSystem.out.println();<Esc>hi
