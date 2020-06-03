@@ -11,7 +11,6 @@ call plug#end()
 
 " configuration for NERDTree
 autocmd STdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") && v:this_session == "" | NERDTree | endif
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let NERDTreeShowHidden=1
 
@@ -51,9 +50,9 @@ nnoremap <c-p> :Files<cr>
 "nnoremap <c-f> :Ag<space>
 nnoremap <leader>o :NERDTreeToggle<cr> 
 
-" easy <Esc> key
-inoremap jk <Esc>
-inoremap kj <Esc>
+" easy <Esc> key (useless now, after Caps/Esc swap)
+" inoremap jk <Esc>
+" inoremap kj <Esc>
 
 " easy insert mode movement
 inoremap <A-h> <C-o>h
