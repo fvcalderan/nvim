@@ -7,6 +7,7 @@ Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
 Plug 'dikiaap/minimalist'
+Plug 'voldikss/vim-floaterm'
 call plug#end()
 
 " configuration for NERDTree
@@ -48,7 +49,7 @@ nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
 nnoremap <c-p> :Files<cr>
 
 "nnoremap <c-f> :Ag<space>
-nnoremap <leader>o :NERDTreeToggle<cr> 
+nnoremap <silent> <leader>o :NERDTreeToggle<cr> 
 
 " easy <Esc> key (useless now, after Caps/Esc swap)
 " inoremap jk <Esc>
@@ -69,6 +70,16 @@ nnoremap <leader>h <C-w>h
 nnoremap <leader>j <C-w>j 
 nnoremap <leader>k <C-w>k 
 nnoremap <leader>l <C-w>l 
+
+" floaterm
+nnoremap <silent> <leader>t<CR> :FloatermNew<CR>
+nnoremap <silent> <leader>ty :FloatermNew python3 -q<CR>
+nnoremap <silent> <leader>tm :FloatermNew vifm<CR>
+nnoremap <silent> <leader>tv :FloatermNew nvim<CR>
+tnoremap <silent> <F9>  <C-\><C-n>:FloatermNext<CR>
+tnoremap <silent> <F10> <C-\><C-n>:FloatermKill<CR>
+nnoremap <silent> <F12> :FloatermToggle<CR>
+tnoremap <silent> <F12> <C-\><C-n>:FloatermToggle<CR>
 
 " My leader+key lang-specific shortcuts
 
