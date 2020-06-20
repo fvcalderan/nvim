@@ -3,6 +3,7 @@ call plug#begin()
 Plug 'terryma/vim-multiple-cursors'
 Plug 'sheerun/vim-polyglot'
 Plug 'jiangmiao/auto-pairs'
+Plug 'unblevable/quick-scope'
 Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
@@ -32,6 +33,16 @@ set smarttab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+
+" quickscope
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+augroup qs_colors
+  autocmd!
+  autocmd ColorScheme * highlight QuickScopePrimary guifg=red gui=underline ctermfg=red cterm=underline
+  autocmd ColorScheme * highlight QuickScopeSecondary guifg=yellow gui=underline ctermfg=yellow cterm=underline
+augroup END
+
+
 
 " colors and theme - minimalist
 set fillchars+=vert:\ 
@@ -87,9 +98,15 @@ tnoremap <silent> <F12> <C-\><C-n>:FloatermToggle<CR>
 " General (run shell script)
 nnoremap <leader>r <Esc>:w<CR>:!./run<CR>
 " Latex compiling
-nnoremap <leader>lr <Esc>:w<CR>:!~/dotfiles/scripts/latex_compile %:p<CR>
+nnoremap <leader>pr <Esc>:w<CR>:!~/dotfiles/scripts/latex_compile %:p<CR>
+
+" Latex specific
+nnoremap <leader>pv o<CR>\vspace{5mm}<CR><CR>
+nnoremap <leader>pb a\textbf{}<ESC>i
+nnoremap <leader>ps a$$<Esc>i
 
 " Java specific
 nnoremap <leader>jc ipublic class <Esc>:r!echo %<CR>i<BS><Esc>A<BS><BS><BS><BS><BS> {<CR><CR>}<Esc>ki<Tab>
+nnoremap <leader>ji ipublic interface <Esc>:r!echo %<CR>i<BS><Esc>A<BS><BS><BS><BS><BS> {<CR><CR>}<Esc>ki<Tab>
 nnoremap <leader>jm opublic static void main (String args[]) {<CR><CR>}<Esc>ki<Tab><Tab>
 nnoremap <leader>jp oSystem.out.println();<Esc>hi
