@@ -1,3 +1,15 @@
+"   __                _     _                      
+"  / _|_   _____ __ _| | __| | ___ _ __ __ _ _ __  
+" | |_\ \ / / __/ _` | |/ _` |/ _ \ '__/ _` | '_ \ 
+" |  _|\ V / (_| (_| | | (_| |  __/ | | (_| | | | |
+" |_|   \_/ \___\__,_|_|\__,_|\___|_|  \__,_|_| |_|
+"
+" My github: https://github.com/fvcalderan/
+" BSD 3-Clause License
+" Copyright (c) 2020, Felipe V. Calderan
+" All rights reserved.
+" See the full license inside LICENSE.txt file
+
 " plugin configuration
 call plug#begin()
 Plug 'terryma/vim-multiple-cursors'
@@ -15,6 +27,7 @@ call plug#end()
 autocmd STdinReadPre * let s:std_in=1
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let NERDTreeShowHidden=1
+nnoremap <silent> <leader>o :NERDTreeToggle<cr> 
 
 " configuration for airline
 set noshowmode 
@@ -42,8 +55,6 @@ augroup qs_colors
   autocmd ColorScheme * highlight QuickScopeSecondary guifg=yellow gui=underline ctermfg=yellow cterm=underline
 augroup END
 
-
-
 " colors and theme - minimalist
 set fillchars+=vert:\ 
 set t_Co=256
@@ -58,21 +69,6 @@ let mapleader="\<space>"
 nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
 nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
 nnoremap <c-p> :Files<cr>
-
-"nnoremap <c-f> :Ag<space>
-nnoremap <silent> <leader>o :NERDTreeToggle<cr> 
-
-" easy <Esc> key (useless now, after Caps/Esc swap)
-" inoremap jk <Esc>
-" inoremap kj <Esc>
-
-" easy insert mode movement
-inoremap <A-h> <C-o>h
-inoremap <A-j> <C-o>j
-inoremap <A-k> <C-o>k
-inoremap <A-b> <C-o>b
-inoremap <A-w> <C-o>w
-inoremap <A-l> <C-o>l
 
 " splits
 set splitbelow
@@ -92,13 +88,13 @@ tnoremap <silent> <F10> <C-\><C-n>:FloatermKill<CR>
 nnoremap <silent> <F12> :FloatermToggle<CR>
 tnoremap <silent> <F12> <C-\><C-n>:FloatermToggle<CR>
 
-" My leader+key lang-specific shortcuts
-
 " Custom compiling/running options for various languages
 " General (run shell script)
 nnoremap <leader>r <Esc>:w<CR>:!./run<CR>
 " Latex compiling
 nnoremap <leader>pr <Esc>:w<CR>:!~/dotfiles/scripts/latex_compile %:p<CR>
+
+" My leader+key lang-specific shortcuts
 
 " Latex specific
 nnoremap <leader>pv o<CR>\vspace{5mm}<CR><CR>
