@@ -27,7 +27,6 @@ call plug#end()
 autocmd STdinReadPre * let s:std_in=1
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let NERDTreeShowHidden=1
-nnoremap <silent> <leader>o :NERDTreeToggle<cr> 
 
 " configuration for airline
 set noshowmode 
@@ -66,6 +65,7 @@ let g:airline#extensions#tabline#enabled = 1
 
 " my custom hotkeys
 let mapleader="\<space>"
+nnoremap <silent> <leader>o :NERDTreeToggle<cr> 
 nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
 nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
 nnoremap <c-p> :Files<cr>
