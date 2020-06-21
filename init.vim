@@ -30,6 +30,8 @@ let NERDTreeShowHidden=1
 
 " configuration for airline
 set noshowmode 
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#enabled = 1
 
 "basic configuration
 set hidden
@@ -61,14 +63,13 @@ syntax on
 colorscheme minimalist
 let g:airline_theme='minimalist'
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
 
 " my custom hotkeys
 let mapleader="\<space>"
 nnoremap <silent> <leader>o :NERDTreeToggle<cr> 
 nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
 nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
-nnoremap <c-p> :Files<cr>
+nnoremap <leader>b :buffers<CR>:b<Space>
 
 " splits
 set splitbelow
