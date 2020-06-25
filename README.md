@@ -25,4 +25,5 @@ Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
 Plug 'dikiaap/minimalist'
 Plug 'voldikss/vim-floaterm'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 ```
