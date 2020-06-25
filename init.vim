@@ -1,6 +1,6 @@
-"   __                _     _                      
-"  / _|_   _____ __ _| | __| | ___ _ __ __ _ _ __  
-" | |_\ \ / / __/ _` | |/ _` |/ _ \ '__/ _` | '_ \ 
+"   __                _     _
+"  / _|_   _____ __ _| | __| | ___ _ __ __ _ _ __
+" | |_\ \ / / __/ _` | |/ _` |/ _ \ '__/ _` | '_ \
 " |  _|\ V / (_| (_| | | (_| |  __/ | | (_| | | | |
 " |_|   \_/ \___\__,_|_|\__,_|\___|_|  \__,_|_| |_|
 "
@@ -21,6 +21,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
 Plug 'dikiaap/minimalist'
 Plug 'voldikss/vim-floaterm'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 call plug#end()
 
 " configuration for NERDTree
@@ -29,7 +31,7 @@ autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let NERDTreeShowHidden=1
 
 " configuration for airline
-set noshowmode 
+set noshowmode
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#enabled = 1
 
@@ -58,16 +60,17 @@ augroup qs_colors
 augroup END
 
 " colors and theme - minimalist
-set fillchars+=vert:\ 
+set fillchars+=vert:\
 set t_Co=256
 syntax on
 colorscheme minimalist
 let g:airline_theme='minimalist'
 let g:airline_powerline_fonts = 1
+:highlight Pmenu ctermbg=08 guibg=gray " for coc menu
 
 " my custom hotkeys
 let mapleader="\<space>"
-nnoremap <silent> <leader>o :NERDTreeToggle<cr> 
+nnoremap <silent> <leader>o :NERDTreeToggle<cr>
 nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
 nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
 nnoremap <leader>b :buffers<CR>:b<Space>
@@ -75,10 +78,10 @@ nnoremap <leader>b :buffers<CR>:b<Space>
 " splits
 set splitbelow
 set splitright
-nnoremap <leader>h <C-w>h 
-nnoremap <leader>j <C-w>j 
-nnoremap <leader>k <C-w>k 
-nnoremap <leader>l <C-w>l 
+nnoremap <leader>h <C-w>h
+nnoremap <leader>j <C-w>j
+nnoremap <leader>k <C-w>k
+nnoremap <leader>l <C-w>l
 
 " floaterm
 nnoremap <silent> <leader>t<CR> :FloatermNew<CR>
@@ -94,17 +97,20 @@ tnoremap <silent> <F12> <C-\><C-n>:FloatermToggle<CR>
 " General (run shell script)
 nnoremap <leader>r <Esc>:w<CR>:!./run<CR>
 " Latex compiling
-nnoremap <leader>pr <Esc>:w<CR>:!~/dotfiles/scripts/latex_compile %:p<CR>
+nnoremap <leader>lr <Esc>:w<CR>:!~/dotfiles/scripts/latex_compile %:p<CR>
 
 " My leader+key lang-specific shortcuts
 
 " Latex specific
-nnoremap <leader>pv o<CR>\vspace{5mm}<CR><CR>
-nnoremap <leader>pb a\textbf{}<ESC>i
-nnoremap <leader>ps a$$<Esc>i
+nnoremap <leader>lv o<CR>\vspace{5mm}<CR><CR>
+nnoremap <leader>lb a\textbf{}<ESC>i
+nnoremap <leader>ls a$$<Esc>i
 
 " Java specific
 nnoremap <leader>jc ipublic class <Esc>:r!echo %<CR>i<BS><Esc>A<BS><BS><BS><BS><BS> {<CR><CR>}<Esc>ki<Tab>
 nnoremap <leader>ji ipublic interface <Esc>:r!echo %<CR>i<BS><Esc>A<BS><BS><BS><BS><BS> {<CR><CR>}<Esc>ki<Tab>
 nnoremap <leader>jm opublic static void main (String args[]) {<CR><CR>}<Esc>ki<Tab><Tab>
 nnoremap <leader>jp oSystem.out.println();<Esc>hi
+
+" CoC Configuration
+source ~/.config/nvim/vim-plugins/coc-config.vim
