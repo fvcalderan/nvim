@@ -5,10 +5,6 @@
 " |_|   \_/ \___\__,_|_|\__,_|\___|_|  \__,_|_| |_|
 "
 " My github: https://github.com/fvcalderan/
-" BSD 3-Clause License
-" Copyright (c) 2020, Felipe V. Calderan
-" All rights reserved.
-" See the full license inside LICENSE.txt file
 
 " plugin configuration
 call plug#begin()
@@ -22,7 +18,6 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'dikiaap/minimalist'
 Plug 'voldikss/vim-floaterm'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 call plug#end()
 
 " configuration for NERDTree
@@ -97,14 +92,14 @@ tnoremap <silent> <F12> <C-\><C-n>:FloatermToggle<CR>
 " General (run shell script)
 nnoremap <leader>r <Esc>:w<CR>:!./run<CR>
 " Latex compiling
-nnoremap <leader>lr <Esc>:w<CR>:!~/dotfiles/scripts/latex_compile %:p<CR>
+nnoremap <leader>pr <Esc>:w<CR>:!~/dotfiles/scripts/latex_compile %:p<CR>
 
 " My leader+key lang-specific shortcuts
 
 " Latex specific
-nnoremap <leader>lv o<CR>\vspace{5mm}<CR><CR>
-nnoremap <leader>lb a\textbf{}<ESC>i
-nnoremap <leader>ls a$$<Esc>i
+nnoremap <leader>pv o<CR>\vspace{5mm}<CR><CR>
+nnoremap <leader>pb a\textbf{}<ESC>i
+nnoremap <leader>ps a$$<Esc>i
 
 " Java specific
 nnoremap <leader>jc ipublic class <Esc>:r!echo %<CR>i<BS><Esc>A<BS><BS><BS><BS><BS> {<CR><CR>}<Esc>ki<Tab>
