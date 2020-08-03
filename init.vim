@@ -13,9 +13,11 @@ Plug 'sheerun/vim-polyglot'
 Plug 'jiangmiao/auto-pairs'
 Plug 'unblevable/quick-scope'
 Plug 'preservim/nerdtree'
-Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-devicons'
-Plug 'dikiaap/minimalist'
+Plug 'dracula/vim', { 'as': 'dracula' }
+"Plug 'dikiaap/minimalist'
 Plug 'voldikss/vim-floaterm'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
@@ -26,9 +28,17 @@ autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let NERDTreeShowHidden=1
 
 " configuration for airline
+" set noshowmode
+" let g:airline#extensions#tabline#formatter = 'unique_tail'
+" let g:airline#extensions#tabline#enabled = 1
+"let g:airline_theme='minimalist'
+"let g:airline_powerline_fonts = 1
+
+" configuration for lightline
 set noshowmode
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline#extensions#tabline#enabled = 1
+let g:lightline = {
+      \ 'colorscheme': 'dracula',
+      \ }
 
 "basic configuration
 set clipboard+=unnamedplus
@@ -54,14 +64,17 @@ augroup qs_colors
   autocmd ColorScheme * highlight QuickScopeSecondary guifg=yellow gui=underline ctermfg=yellow cterm=underline
 augroup END
 
-" colors and theme - minimalist
-set fillchars+=vert:\
-set t_Co=256
+" colors and theme - dracula
+set termguicolors
+colorscheme dracula
 syntax on
-colorscheme minimalist
-let g:airline_theme='minimalist'
-let g:airline_powerline_fonts = 1
-:highlight Pmenu ctermbg=08 guibg=gray " for coc menu
+
+" colors and theme - minimalist
+"set fillchars+=vert:\
+"set t_Co=256
+"syntax on
+"colorscheme minimalist
+":highlight Pmenu ctermbg=08 guibg=gray " for coc menu
 
 " my custom hotkeys
 let mapleader="\<space>"
