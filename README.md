@@ -16,9 +16,9 @@ Plug 'sheerun/vim-polyglot'
 Plug 'jiangmiao/auto-pairs'
 Plug 'unblevable/quick-scope'
 Plug 'preservim/nerdtree'
-Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-devicons'
-Plug 'dikiaap/minimalist'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'voldikss/vim-floaterm'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 ```
