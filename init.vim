@@ -48,6 +48,7 @@ set relativenumber
 set mouse=a
 set inccommand=split
 set autochdir
+set cc=80
 
 " tabs
 set expandtab
