@@ -19,7 +19,6 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'dracula/vim', { 'as': 'dracula' }
 "Plug 'dikiaap/minimalist'
 Plug 'voldikss/vim-floaterm'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " configuration for NERDTree
@@ -92,11 +91,14 @@ nnoremap <leader>j <C-w>j
 nnoremap <leader>k <C-w>k
 nnoremap <leader>l <C-w>l
 
+" term
+tnoremap <silent> <C-x> <C-\><C-n>
+
 " floaterm
+let g:floaterm_wintype="normal"
 nnoremap <silent> <leader>t<CR> :FloatermNew<CR>
 nnoremap <silent> <leader>ty :FloatermNew python3 -q<CR>
 nnoremap <silent> <leader>tm :FloatermNew vifm<CR>
-nnoremap <silent> <leader>tv :FloatermNew nvim<CR>
 tnoremap <silent> <F9>  <C-\><C-n>:FloatermNext<CR>
 tnoremap <silent> <F10> <C-\><C-n>:FloatermKill<CR>
 nnoremap <silent> <F12> :FloatermToggle<CR>
@@ -113,6 +115,7 @@ nnoremap <leader>pr <Esc>:w<CR>:!~/dotfiles/scripts/latex_compile %:p<CR>
 " Latex specific
 nnoremap <leader>pv o<CR>\vspace{5mm}<CR><CR>
 nnoremap <leader>pb a\textbf{}<ESC>i
+nnoremap <leader>pi a\textit{}<ESC>i
 nnoremap <leader>ps a$$<Esc>i
 
 " Java specific
@@ -120,6 +123,3 @@ nnoremap <leader>jc ipublic class <Esc>:r!echo %<CR>i<BS><Esc>A<BS><BS><BS><BS><
 nnoremap <leader>ji ipublic interface <Esc>:r!echo %<CR>i<BS><Esc>A<BS><BS><BS><BS><BS> {<CR><CR>}<Esc>ki<Tab>
 nnoremap <leader>jm opublic static void main (String args[]) {<CR><CR>}<Esc>ki<Tab><Tab>
 nnoremap <leader>jp oSystem.out.println();<Esc>hi
-
-" CoC Configuration
-source ~/.config/nvim/vim-plugins/coc-config.vim
