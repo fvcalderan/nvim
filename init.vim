@@ -13,33 +13,24 @@ Plug 'sheerun/vim-polyglot'
 Plug 'jiangmiao/auto-pairs'
 Plug 'unblevable/quick-scope'
 Plug 'preservim/nerdtree'
-"Plug 'vim-airline/vim-airline'
 Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'dracula/vim', { 'as': 'dracula' }
-"Plug 'dikiaap/minimalist'
 Plug 'voldikss/vim-floaterm'
 call plug#end()
 
 " configuration for NERDTree
 autocmd STdinReadPre * let s:std_in=1
-autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree")
+                                     \ && b:NERDTree.isTabTree()) | q | endif
 let NERDTreeShowHidden=1
-
-" configuration for airline
-" set noshowmode
-" let g:airline#extensions#tabline#formatter = 'unique_tail'
-" let g:airline#extensions#tabline#enabled = 1
-"let g:airline_theme='minimalist'
-"let g:airline_powerline_fonts = 1
 
 " configuration for lightline
 set noshowmode
-let g:lightline = {
-      \ 'colorscheme': 'dracula',
-      \ }
+let g:lightline = {'colorscheme': 'dracula'}
 
 "basic configuration
+filetype plugin on
 set clipboard+=unnamedplus
 set hidden
 set number
@@ -47,7 +38,16 @@ set relativenumber
 set mouse=a
 set inccommand=split
 set autochdir
-set cc=80
+"set cc=80
+
+" disable auto-next-line-comment
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" autocomplete menu
+set wildmode=longest:full,full
+
+" delete trailing whitespaces on save
+autocmd BufWritePre * %s/\s\+$//e
 
 " tabs
 set expandtab
@@ -60,21 +60,17 @@ set softtabstop=4
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 augroup qs_colors
   autocmd!
-  autocmd ColorScheme * highlight QuickScopePrimary guifg=red gui=underline ctermfg=red cterm=underline
-  autocmd ColorScheme * highlight QuickScopeSecondary guifg=yellow gui=underline ctermfg=yellow cterm=underline
+  autocmd ColorScheme * highlight QuickScopePrimary guifg=red
+                                \ gui=underline ctermfg=red cterm=underline
+  autocmd ColorScheme * highlight QuickScopeSecondary guifg=yellow
+                                \ gui=underline ctermfg=yellow cterm=underline
 augroup END
 
 " colors and theme - dracula
 set termguicolors
 colorscheme dracula
 syntax on
-
-" colors and theme - minimalist
-"set fillchars+=vert:\
-"set t_Co=256
-"syntax on
-"colorscheme minimalist
-":highlight Pmenu ctermbg=08 guibg=gray " for coc menu
+hi Normal guibg=NONE ctermbg=NONE
 
 " my custom hotkeys
 let mapleader="\<space>"
@@ -82,44 +78,72 @@ nnoremap <silent> <leader>o :NERDTreeToggle<cr>
 nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
 nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
 nnoremap <leader>b :buffers<CR>:b<Space>
+nnoremap <silent> <leader>/ :nohlsearch<CR>
 
 " splits
-set splitbelow
-set splitright
-nnoremap <leader>h <C-w>h
-nnoremap <leader>j <C-w>j
-nnoremap <leader>k <C-w>k
-nnoremap <leader>l <C-w>l
+set splitbelow splitright
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 " term
 tnoremap <silent> <C-x> <C-\><C-n>
 
 " floaterm
 let g:floaterm_wintype="normal"
-nnoremap <silent> <leader>t<CR> :FloatermNew<CR>
-nnoremap <silent> <leader>ty :FloatermNew python3 -q<CR>
-nnoremap <silent> <leader>tm :FloatermNew vifm<CR>
-tnoremap <silent> <F9>  <C-\><C-n>:FloatermNext<CR>
-tnoremap <silent> <F10> <C-\><C-n>:FloatermKill<CR>
+nnoremap <silent> <leader><CR> :FloatermToggle<CR>
+tnoremap <silent> <leader><CR> <C-\><C-n>:FloatermToggle<CR>
 nnoremap <silent> <F12> :FloatermToggle<CR>
 tnoremap <silent> <F12> <C-\><C-n>:FloatermToggle<CR>
+
+" Fast tab to guide
+inoremap <C-Space> <Esc>/<++><CR>c4l
+vnoremap <C-Space> <Esc>/<++><CR>c4l
+nnoremap <C-Space> <Esc>/<++><CR>c4l
 
 " Custom compiling/running options for various languages
 " General (run shell script)
 nnoremap <leader>r <Esc>:w<CR>:!./run<CR>
 " Latex compiling
-nnoremap <leader>pr <Esc>:w<CR>:!~/dotfiles/scripts/latex_compile %:p<CR>
+nnoremap <leader>lr <Esc>:w<CR>:!~/.config/scripts/latex_compile %:p<CR>
 
 " My leader+key lang-specific shortcuts
 
+" C specific
+autocmd FileType c nnoremap ,m a#include <stdio.h><CR><CR>int main(int argc,
+                              \ char **argv)<CR>{}<ESC>i<CR><ESC>Oreturn 0;
+                              \<ESC>O
+autocmd FileType c nnoremap ,f ofor (<++>; <++>; <++>)<CR>{}<ESC>i<CR><TAB>
+                              \<++><CR><ESC>?f<CR>kdd:nohlsearch<CR>
+autocmd FileType c nnoremap ,p oprintf("<++>", <++>);<ESC>?p<CR>kdd
+                              \:nohlsearch<CR>
+autocmd FileType c nnoremap ,c yiwgg)o<++> <ESC>pa(<++>) {}<ESC>i<CR><TAB>
+                              \<++><CR><ESC>o<ESC>kkkk
+
 " Latex specific
-nnoremap <leader>pv o<CR>\vspace{5mm}<CR><CR>
-nnoremap <leader>pb a\textbf{}<ESC>i
-nnoremap <leader>pi a\textit{}<ESC>i
-nnoremap <leader>ps a$$<Esc>i
+autocmd FileType tex nnoremap ,v o<CR>\vspace{5mm}<CR><CR>
+autocmd FileType tex nnoremap ,b a\textbf{}<ESC>i
+autocmd FileType tex vnoremap ,b s\textbf{}<ESC>hpf}<Space>
+autocmd FileType tex nnoremap ,i a\textit{}<ESC>i
+autocmd FileType tex vnoremap ,i s\textit{}<ESC>hpf}<Space>
+autocmd FileType tex nnoremap ,s a$$<Esc>i
+autocmd FileType tex vnoremap ,s s$$<ESC>hpf$<Space>
+autocmd FileType tex nnoremap ,g a\includegraphics[width=<++>\textwidth]{<++>}
+                                 \<ESC>Fnhh
+autocmd FileType tex nnoremap ,[ a\[\]<ESC>hi<CR><ESC>O
+autocmd FileType tex nnoremap ,q o\newpage<CR><CR>\textbf{Questão <++>}<CR><CR>
+                                \\hrule<CR>\vspace{5mm}<CR><CR><++><ESC>?n<CR>h
+                                \:nohlsearch<CR>
 
 " Java specific
-nnoremap <leader>jc ipublic class <Esc>:r!echo %<CR>i<BS><Esc>A<BS><BS><BS><BS><BS> {<CR><CR>}<Esc>ki<Tab>
-nnoremap <leader>ji ipublic interface <Esc>:r!echo %<CR>i<BS><Esc>A<BS><BS><BS><BS><BS> {<CR><CR>}<Esc>ki<Tab>
-nnoremap <leader>jm opublic static void main (String args[]) {<CR><CR>}<Esc>ki<Tab><Tab>
-nnoremap <leader>jp oSystem.out.println();<Esc>hi
+autocmd FileType java nnoremap ,c ipublic class <Esc>:r!echo
+                                         \ %<CR>i<BS><Esc>A<BS><BS><BS><BS><BS>
+                                         \ {<CR><CR>}<Esc>ki<Tab>
+autocmd FileType java nnoremap ,i ipublic interface <Esc>:r!echo
+                                         \ %<CR>i<BS><Esc>A<BS><BS><BS><BS><BS>
+                                         \ {<CR><CR>}<Esc>ki<Tab>
+autocmd FileType java nnoremap ,m opublic static void main
+                                         \ (String args[]) {<CR><CR>}<Esc>ki
+                                         \ <Tab><Tab>
+autocmd FileType java nnoremap ,p oSystem.out.println();<Esc>hi
