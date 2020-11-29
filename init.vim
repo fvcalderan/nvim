@@ -87,13 +87,17 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" show date, time and battery
+nnoremap <silent> <leader>' :!echo $(date) BAT:
+                           \ $(cat /sys/class/power_supply/BAT1/capacity)\%<CR>
+
 " term
-tnoremap <silent> <C-x> <C-\><C-n>
+" tnoremap <silent> <C-x> <C-\><C-n>
 
 " floaterm
 let g:floaterm_wintype="normal"
 nnoremap <silent> <leader><CR> :FloatermToggle<CR>
-tnoremap <silent> <leader><CR> <C-\><C-n>:FloatermToggle<CR>
+tnoremap <silent> <C-x> <C-\><C-n>:FloatermToggle<CR>
 nnoremap <silent> <F12> :FloatermToggle<CR>
 tnoremap <silent> <F12> <C-\><C-n>:FloatermToggle<CR>
 
