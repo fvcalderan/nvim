@@ -38,7 +38,6 @@ set relativenumber
 set mouse=a
 set inccommand=split
 set autochdir
-"set cc=80
 
 " disable auto-next-line-comment
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -79,6 +78,12 @@ nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
 nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
 nnoremap <leader>b :buffers<CR>:b<Space>
 nnoremap <silent> <leader>/ :nohlsearch<CR>
+nnoremap <silent> <leader>c :set cc=80<CR>
+nnoremap <silent> <leader>C :set cc=0<CR>
+
+" show date, time and battery
+nnoremap <silent> <leader>' :!echo $(date) BAT:
+                           \ $(cat /sys/class/power_supply/BAT1/capacity)\%<CR>
 
 " splits
 set splitbelow splitright
@@ -86,10 +91,6 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-
-" show date, time and battery
-nnoremap <silent> <leader>' :!echo $(date) BAT:
-                           \ $(cat /sys/class/power_supply/BAT1/capacity)\%<CR>
 
 " term
 " tnoremap <silent> <C-x> <C-\><C-n>
@@ -124,6 +125,22 @@ autocmd FileType c nnoremap ,p oprintf("<++>", <++>);<ESC>?p<CR>kdd
                               \:nohlsearch<CR>
 autocmd FileType c nnoremap ,c yiwgg)o<++> <ESC>pa(<++>) {}<ESC>i<CR><TAB>
                               \<++><CR><ESC>o<ESC>kkkk
+
+" Python specific
+autocmd Filetype python nnoremap ,m a#imports<CR><CR>def main():<CR>q<CR><CR>
+                                   \<BS>if __name__ ==
+                                   \ '__main__':<CR>main()<ESC>?q<CR>
+                                   \:nohlsearch<CR>xi
+autocmd Filetype python nnoremap ,ff ofor <++> in <++>:<CR><++><ESC>kkdd
+autocmd Filetype python nnoremap ,fr ofor <++> in range(<++>):<CR><++><ESC>kkdd
+autocmd Filetype python nnoremap ,fe ofor <++>, <++> in enumerate(<++>):
+                                    \<CR><++><ESC>kkdd
+autocmd Filetype python nnoremap ,p oprint(f"{}")<ESC>kddf{a
+autocmd Filetype python nnoremap ,ll oq = [<++> for <++> in <++>]<ESC>kdd0fqxi
+autocmd Filetype python nnoremap ,lr oq = [<++> for <++> in range(<++>)]
+                                    \<ESC>kdd0fqxi
+autocmd Filetype python nnoremap ,c yiwgg)odef <ESC>pa(<++>) -> <++>:<CR><++>
+                                   \<CR><ESC>kk
 
 " Latex specific
 autocmd FileType tex nnoremap ,v o<CR>\vspace{5mm}<CR><CR>
