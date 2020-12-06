@@ -36,8 +36,16 @@ set hidden
 set number
 set relativenumber
 set mouse=a
-set inccommand=split
 set autochdir
+
+" nvim only
+set inccommand=split
+
+" vim only
+" set laststatus=2
+" let &t_SI = "\<Esc>[6 q"
+" let &t_SR = "\<Esc>[4 q"
+" let &t_EI = "\<Esc>[2 q"
 
 " disable auto-next-line-comment
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -82,7 +90,7 @@ nnoremap <silent> <leader>c :set cc=80<CR>
 nnoremap <silent> <leader>C :set cc=0<CR>
 
 " show date, time and battery
-nnoremap <silent> <leader>' :!echo $(date) BAT:
+nnoremap <silent> <leader>' :!echo $(date +"\%F \%R") BAT:
                            \ $(cat /sys/class/power_supply/BAT1/capacity)\%<CR>
 
 " splits
