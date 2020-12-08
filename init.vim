@@ -118,4 +118,4 @@ vnoremap <C-Space> <Esc>/<++><CR>c4l
 nnoremap <C-Space> <Esc>/<++><CR>c4l
 
 " My lang-specific shortcuts ==================================================
-source vimscripts/lang-macros.vim
+source ~/.config/nvim/vimscripts/lang-macros.vim
