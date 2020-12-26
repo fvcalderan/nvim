@@ -21,6 +21,9 @@ call plug#end()
 " leader key ==================================================================
 let mapleader="\<space>"
 
+" spellchecker ================================================================
+set spelllang=en_us,pt_br
+
 " configuration for NERDTree ==================================================
 autocmd STdinReadPre * let s:std_in=1
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree")
@@ -76,8 +79,8 @@ set softtabstop=4
 
 " nvim only ===================================================================
 set inccommand=split
-nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
-nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
+nnoremap <leader>ve :vsplit ~/.config/nvim/init.vim<cr>
+nnoremap <leader>vs :source ~/.config/nvim/init.vim<cr>
 
 " vim only ====================================================================
 " set laststatus=2
@@ -88,6 +91,9 @@ nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
 " nnoremap <leader>sv :source ~/.vim/vimrc<cr>
 
 " my custom hotkeys ===========================================================
+
+" Switch spellchecker on/off:
+nnoremap <leader>s :set spell!<CR>
 
 " show open buffers and change to buffer n
 nnoremap <leader>b :buffers<CR>:b<Space>
