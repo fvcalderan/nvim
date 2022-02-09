@@ -34,6 +34,8 @@ autocmd Filetype python nnoremap ,lr oq = [<++> for <++> in range(<++>)]
                                     \<ESC>kdd0fqxi
 autocmd Filetype python nnoremap ,c yiwgg)odef <ESC>pa(<++>) -> <++>:<CR><++>
                                    \<CR><ESC>kk
+autocmd Filetype python nnoremap ,r :w<CR>:!black --line-length 79 %<CR>:e<CR>
+                                   \:!flake8 %<CR>
 
 " Latex specific ==============================================================
 autocmd FileType tex nnoremap ,v o<CR>\vspace{5mm}<CR><CR>
@@ -61,3 +63,6 @@ autocmd FileType java nnoremap ,m opublic static void main
                                          \ (String args[]) {<CR><CR>}<Esc>ki
                                          \ <Tab><Tab>
 autocmd FileType java nnoremap ,p oSystem.out.println();<Esc>hi
+
+" GDScript specific ===========================================================
+autocmd FileType gdscript3 nnoremap ,r :!godot -s %<CR>

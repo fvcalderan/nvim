@@ -10,11 +10,11 @@
 call plug#begin()
 Plug 'terryma/vim-multiple-cursors'
 Plug 'sheerun/vim-polyglot'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 Plug 'unblevable/quick-scope'
 Plug 'preservim/nerdtree'
 Plug 'itchyny/lightline.vim'
-Plug 'dracula/vim', { 'as': 'dracula' }
+" Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'voldikss/vim-floaterm'
 call plug#end()
 
@@ -33,7 +33,8 @@ nnoremap <silent> <leader>o :NERDTreeToggle<cr>
 
 " configuration for lightline =================================================
 set noshowmode
-let g:lightline = {'colorscheme': 'dracula'}
+" let g:lightline = {'colorscheme': 'dracula'}
+let g:lightline = {'colorscheme': 'ballerini'}
 
 " quickscope ==================================================================
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -46,17 +47,26 @@ augroup qs_colors
 augroup END
 
 " floaterm ====================================================================
-let g:floaterm_wintype="normal"
+let g:floaterm_wintype="split"
 nnoremap <silent> <leader><CR> :FloatermToggle<CR>
 tnoremap <silent> <C-x> <C-\><C-n>:FloatermToggle<CR>
 nnoremap <silent> <F12> :FloatermToggle<CR>
 tnoremap <silent> <F12> <C-\><C-n>:FloatermToggle<CR>
 
-" colors and theme - dracula ==================================================
+" colors and theme - ballerini ================================================
 set termguicolors
-colorscheme dracula
+" colorscheme dracula
 syntax on
 hi Normal guibg=NONE ctermbg=NONE
+hi Comment guifg=#8e646b
+hi LineNr guifg=#8e646b
+hi CursorLineNr guifg=#e68e7b
+hi Visual guibg=#583c38
+hi Search guibg=#583c38 guifg=NONE
+hi ColorColumn guibg=#2f2325
+hi NonText guifg=#261c1e
+hi RedundantSpaces guibg=#261c1e guifg=#261c1e
+match RedundantSpaces /\s\+$/
 
 " basic configuration =========================================================
 filetype plugin on
